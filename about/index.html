@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        
+        <link rel="canonical" href="https://jpcarmona.github.io/web/about/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>About - El rincón vacío</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
@@ -22,7 +22,16 @@
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-36723568-3', 'mkdocs.org');
+            ga('send', 'pageview');
+        </script> 
     </head>
 
     <body>
@@ -49,6 +58,9 @@
                             <li >
                                 <a href="..">Home</a>
                             </li>
+                            <li >
+                                <a href="../mkdocs/">MkDocs</a>
+                            </li>
                             <li class="active">
                                 <a href="./">About</a>
                             </li>
@@ -61,7 +73,7 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="..">
+                                <a rel="next" href="../mkdocs/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -69,6 +81,9 @@
                                 <a rel="prev" >
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/jpcarmona/?query=root/path/docs/about.md"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -151,11 +166,12 @@ memori et seduxit duri commune inposuit, cornua.</p></div>
 
         <footer class="col-md-12">
             <hr>
+                <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"> <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"> Licencia Creative Commons Atribución 4.0 Internacional</a></p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"next": 78, "help": 191, "previous": 80, "search": 83};
+                shortcuts = {"next": 78, "search": 83, "previous": 80, "help": 191};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
