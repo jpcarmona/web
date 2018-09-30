@@ -351,8 +351,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
+  <a href="#creacion-del-sitio" title="Creación del sitio" class="md-nav__link">
+    Creación del sitio
   </a>
   
 </li>
@@ -413,8 +413,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
+  <a href="#creacion-del-sitio" title="Creación del sitio" class="md-nav__link">
+    Creación del sitio
   </a>
   
 </li>
@@ -442,37 +442,51 @@
 <p>En este post veremos como crear páginas estáticas con MkDocs en un entorno Debian Stretch y luego desplegarlas con GitHubPages .</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <p>Antes de instalar algo en Entornos Debian:  </p>
-<div class="codehilite"><pre><span></span>sudo apt update
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt update
 </pre></div>
-
+</td></tr></table>
 
 <p>Instalamos Python y Pip ya que MkDocs está desarrollado en Python:</p>
-<div class="codehilite"><pre><span></span>sudo apt-get install python3.5
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install python3.5
 sudo apt-get install python3-pip
 </pre></div>
-
+</td></tr></table>
 
 <p>Instalamos el creador de entornos virtuales de Python para instalar los modulos necesarios en nuestro entorno:</p>
-<div class="codehilite"><pre><span></span>sudo apt-get install python3-venv
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install python3-venv
 </pre></div>
+</td></tr></table>
 
-
-<ul>
-<li>Creamos el entorno:  </li>
-</ul>
-<p>python3 -m venv mkdocs_env</p>
-<ul>
-<li>Activamos el entorno:  </li>
-</ul>
-<p>source entorno1/bin/activate</p>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<p>Creamos el entorno:  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>python3 -m venv mkdocs_env
 </pre></div>
+</td></tr></table>
 
+<p>Activamos el entorno:  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">source</span> entorno1/bin/activate
+</pre></div>
+</td></tr></table>
 
+<p>Instalamos el generador de páginas estáticas MkDocs:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>pip install mkdocs
+</pre></div>
+</td></tr></table>
+
+<p>Instalamos también una plantilla para nuestro sitio:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>pip install mkdocs-material
+</pre></div>
+</td></tr></table>
+
+<h2 id="creacion-del-sitio">Creación del sitio<a class="headerlink" href="#creacion-del-sitio" title="Permanent link">&para;</a></h2>
+<p>Para empezar generamos un sitio estándar:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mkdocs new sitio1
+<span class="nb">cd</span> sitio1
+</pre></div>
+</td></tr></table>
+
+<p>La configuración se realiza en el fihero </p>
 <p>Para más documentación visita:<br />
 <a href="https://www.mkdocs.org">mkdocs.org</a><br />
 <a href="https://help.github.com/categories/github-pages-basics">pages.github.com</a>  </p>
