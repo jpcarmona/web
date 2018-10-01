@@ -440,12 +440,9 @@
 <p>En este post veremos como configurar el kernel linux y adaptarlo a las necesidades mínimas de nuestra máquina.</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <p>Antes de instalar algo en Entornos Debian:  </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt update
-</pre></div>
-</td></tr></table>
-
-<p>Instalamos las herramientas básicas de compilación:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install build-essential ncurses-dev xz-utils libssl-dev bc
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt update
+sudo apt upgrade
 </pre></div>
 </td></tr></table>
 
@@ -455,14 +452,34 @@
 </td></tr></table>
 
 <p>Nos creará un fichero en /usr/src/linux-source-4.9.tar.bz2</p>
+<p>Instalamos las bibliotecas de desarrollo para configurar el kernel:
+* menuconfig</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libncurses5-dev
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>gconfig:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libgtk2.0-dev libglib2.0-dev libglade2-dev
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>xconfig</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libqt4-dev
+</pre></div>
+</td></tr></table>
+
 <p>Utilizamos un directorio donde trabajar:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mkdir ~/kernel
 <span class="nb">cd</span> ~/kernel
-cp /usr/src/linux-source-4.9.tar.bz2 ./
-tar -xJf linux-source-4.9.tar.bz2
+cp /usr/src/linux-source-4.9.tar.xz ./
+tar -xJf linux-source-4.9.tar.xz
 </pre></div>
 </td></tr></table>
 
@@ -488,6 +505,15 @@ tar -xJf linux-source-4.9.tar.bz2
 <span class="nv">NAME</span> <span class="o">=</span> Roaring Lionus
 </pre></div>
 </td></tr></table>
+
+<p>Creamos una nueva configuración del kernel adaptada a nuestra máquina con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> ~/kernel/linux-source-4.9/
+make localmodconfig
+</pre></div>
+</td></tr></table>
+
+<p>Con esto nos habrá configurado el fichero "~/kernel/linux-source-4.9/.config" automáticamente.</p>
                 
                   
                 
