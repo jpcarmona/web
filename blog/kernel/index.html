@@ -452,8 +452,10 @@ sudo apt upgrade
 </td></tr></table>
 
 <p>Nos creará un fichero en /usr/src/linux-source-4.9.tar.bz2</p>
-<p>Instalamos las bibliotecas de desarrollo para configurar el kernel:
-* menuconfig</p>
+<p>Instalamos las bibliotecas de desarrollo para configurar el kernel eligiendo la que mas nos guste:</p>
+<ul>
+<li>menuconfig</li>
+</ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libncurses5-dev
 </pre></div>
 </td></tr></table>
@@ -493,7 +495,7 @@ tar -xJf linux-source-4.9.tar.xz
 </pre></div>
 </td></tr></table>
 
-<p>Editamos la línea "EXTRAVERSION":</p>
+<p>Editamos la línea <code>EXTRAVERSION</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -501,8 +503,8 @@ tar -xJf linux-source-4.9.tar.xz
 5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">VERSION</span> <span class="o">=</span> <span class="m">4</span>
 <span class="nv">PATCHLEVEL</span> <span class="o">=</span> <span class="m">9</span>
 <span class="nv">SUBLEVEL</span> <span class="o">=</span> <span class="m">110</span>
-<span class="nv">EXTRAVERSION</span> <span class="o">=</span>-1
-<span class="nv">NAME</span> <span class="o">=</span> Roaring Lionus
+<span class="hll"><span class="nv">EXTRAVERSION</span> <span class="o">=</span>-1
+</span><span class="nv">NAME</span> <span class="o">=</span> Roaring Lionus
 </pre></div>
 </td></tr></table>
 
@@ -513,7 +515,78 @@ make localmodconfig
 </pre></div>
 </td></tr></table>
 
-<p>Con esto nos habrá configurado el fichero "~/kernel/linux-source-4.9/.config" automáticamente.</p>
+<p>Con esto nos habrá configurado el fichero <code>~/kernel/linux-source-4.9/.config</code> automáticamente.</p>
+<p>Ahora podemos usar una de las herramientas de configuración del kernel estando en el directorio <code>~/kernel/linux-source-4.9/</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make menuconfig
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make gconfig
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make xconfig
+</pre></div>
+</td></tr></table>
+
+<p>Yo usaré <code>xconfig</code>:</p>
+<p><img src="/img/xconfig.png" alt="xconfig" width="400" height="400" /></p>
+<p>Marcamos las casillas de los módulos que necesitamos y guardamos.Ahora se ha modificado otra vez el fichero <code>~/kernel/linux-source-4.9/.config</code>.</p>
+<p>Con esto ya compilamos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make deb-pkg
+</pre></div>
+</td></tr></table>
+
+<p>Podemos usar la herramienta time para ver cuanto tarda:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">time</span> make deb-pkg
+</pre></div>
+</td></tr></table>
+
+<p>Por defecto el compilador solo usa un core a la vez, si queremos usar mas de uno utilizamos el siguiente parámetro:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">time</span> make -j <span class="m">2</span> deb-pkg
+</pre></div>
+</td></tr></table>
+
+<p>Nos creará varios ficheros en el directorio padre:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>juanpe@jpdeb2:~/kernel/linux-source-4.9$ ls -l ..
+total <span class="m">342500</span>
+drwxr-xr-x  <span class="m">2</span> juanpe juanpe        <span class="m">21</span> oct  <span class="m">1</span> <span class="m">09</span>:37 configs
+<span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe      <span class="m">2878</span> oct  <span class="m">2</span> <span class="m">09</span>:21 linux-4.9.110-1_4.9.110-1-1_amd64.changes
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe      <span class="m">1353</span> oct  <span class="m">2</span> <span class="m">09</span>:21 linux-4.9.110-1_4.9.110-1-1.debian.tar.gz
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe      <span class="m">1134</span> oct  <span class="m">2</span> <span class="m">09</span>:21 linux-4.9.110-1_4.9.110-1-1.dsc
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe <span class="m">141384410</span> oct  <span class="m">2</span> <span class="m">08</span>:50 linux-4.9.110-1_4.9.110-1.orig.tar.gz
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe  <span class="m">10382700</span> oct  <span class="m">2</span> <span class="m">09</span>:18 linux-headers-4.9.110-1_4.9.110-1-1_amd64.deb
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe   <span class="m">7783044</span> oct  <span class="m">2</span> <span class="m">09</span>:18 linux-image-4.9.110-1_4.9.110-1-1_amd64.deb
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe  <span class="m">95573034</span> oct  <span class="m">2</span> <span class="m">09</span>:21 linux-image-4.9.110-1-dbg_4.9.110-1-1_amd64.deb
+</span><span class="hll">-rw-r--r--  <span class="m">1</span> juanpe juanpe    <span class="m">869814</span> oct  <span class="m">2</span> <span class="m">09</span>:18 linux-libc-dev_4.9.110-1-1_amd64.deb
+</span>drwxr-xr-x <span class="m">25</span> juanpe juanpe      <span class="m">4096</span> oct  <span class="m">2</span> <span class="m">09</span>:21 linux-source-4.9
+-rw-r--r--  <span class="m">1</span> juanpe juanpe  <span class="m">94699084</span> oct  <span class="m">1</span> <span class="m">08</span>:27 linux-source-4.9.tar.xz
+juanpe@jpdeb2:~/kernel/linux-source-4.9$
+</pre></div>
+</td></tr></table>
+
+<p>Procedemos a instalar con <code>dpkg</code> el paquete <code>linux-image-4.9.110-1_4.9.110-1-1_amd64.deb</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo dpkg -i ../linux-image-4.9.110-1_4.9.110-1-1_amd64.deb
+</pre></div>
+</td></tr></table>
+
+<p>Y reiniciamos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo reboot
+</pre></div>
+</td></tr></table>
                 
                   
                 
