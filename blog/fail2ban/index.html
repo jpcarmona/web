@@ -1,0 +1,1171 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="El sitio de la informática">
+      
+      
+        <link rel="canonical" href="https://jpcarmona.github.io/web/blog/fail2ban/">
+      
+      
+        <meta name="author" content="Juan Pedro Carmona Romero">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en, es">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Fail2Ban - El Rincón Vacío</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#instalacion-y-uso-de-herramienta-de-seguridad-fail2ban-en-debian-stretch-95" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://jpcarmona.github.io/web/" title="El Rincón Vacío" class="md-header-nav__button md-logo">
+          
+            <img src="../../img/favicon.ico" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                El Rincón Vacío
+              </span>
+              <span class="md-header-nav__topic">
+                Fail2Ban
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/jpcarmona/generadormkdocs/" title="Ir al repositorio" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      jpcarmona/generadormkdocs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Inicio" class="md-tabs__link">
+        Inicio
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../mkdocs/" title="Blog" class="md-tabs__link md-tabs__link--active">
+          Blog
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://jpcarmona.github.io/web/" title="El Rincón Vacío" class="md-nav__button md-logo">
+      
+        <img src="../../img/favicon.ico" width="48" height="48">
+      
+    </a>
+    El Rincón Vacío
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/jpcarmona/generadormkdocs/" title="Ir al repositorio" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      jpcarmona/generadormkdocs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Inicio" class="md-nav__link">
+      Inicio
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Blog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mkdocs/" title="MkDocs" class="md-nav__link">
+      MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kernel/" title="Kernel Linux" class="md-nav__link">
+      Kernel Linux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plpgsql/" title="PL/SQL vs PL/PGSQL" class="md-nav__link">
+      PL/SQL vs PL/PGSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../oracleinstall/" title="Install Oracle 12" class="md-nav__link">
+      Install Oracle 12
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Fail2Ban
+      </label>
+    
+    <a href="./" title="Fail2Ban" class="md-nav__link md-nav__link--active">
+      Fail2Ban
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-fail2ban" title="Características Fail2Ban" class="md-nav__link">
+    Características Fail2Ban
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definiciones" title="Definiciones" class="md-nav__link">
+    Definiciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-inicial-de-la-maquina" title="Configuración inicial de la máquina" class="md-nav__link">
+    Configuración inicial de la máquina
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maquina-virtual-con-vagrant-y-virtualbox" title="Máquina virtual con Vagrant y VirtualBox:" class="md-nav__link">
+    Máquina virtual con Vagrant y VirtualBox:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accedemos-mediante-ssh" title="Accedemos mediante SSH:" class="md-nav__link">
+    Accedemos mediante SSH:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" title="Instalación" class="md-nav__link">
+    Instalación
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actualizacion-del-sistema" title="Actualización del sistema:" class="md-nav__link">
+    Actualización del sistema:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requerimientos" title="Requerimientos:" class="md-nav__link">
+    Requerimientos:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalamos-fail2ban" title="Instalamos Fail2Ban:" class="md-nav__link">
+    Instalamos Fail2Ban:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ficheros-de-configuracion" title="Ficheros de configuración" class="md-nav__link">
+    Ficheros de configuración
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generales" title="Generales" class="md-nav__link">
+    Generales
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" title="FILTERS" class="md-nav__link">
+    FILTERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions" title="ACTIONS" class="md-nav__link">
+    ACTIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jails" title="JAILS" class="md-nav__link">
+    JAILS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts-o-comandos-de-fail2ban" title="Scripts o comandos de Fail2Ban" class="md-nav__link">
+    Scripts o comandos de Fail2Ban
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-server" title="fail2ban-server" class="md-nav__link">
+    fail2ban-server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-client" title="fail2ban-client" class="md-nav__link">
+    fail2ban-client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-regex" title="fail2ban-regex" class="md-nav__link">
+    fail2ban-regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-testcases" title="fail2ban-testcases" class="md-nav__link">
+    fail2ban-testcases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="Sobre mí" class="md-nav__link">
+      Sobre mí
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-fail2ban" title="Características Fail2Ban" class="md-nav__link">
+    Características Fail2Ban
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definiciones" title="Definiciones" class="md-nav__link">
+    Definiciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-inicial-de-la-maquina" title="Configuración inicial de la máquina" class="md-nav__link">
+    Configuración inicial de la máquina
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maquina-virtual-con-vagrant-y-virtualbox" title="Máquina virtual con Vagrant y VirtualBox:" class="md-nav__link">
+    Máquina virtual con Vagrant y VirtualBox:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accedemos-mediante-ssh" title="Accedemos mediante SSH:" class="md-nav__link">
+    Accedemos mediante SSH:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" title="Instalación" class="md-nav__link">
+    Instalación
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actualizacion-del-sistema" title="Actualización del sistema:" class="md-nav__link">
+    Actualización del sistema:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requerimientos" title="Requerimientos:" class="md-nav__link">
+    Requerimientos:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalamos-fail2ban" title="Instalamos Fail2Ban:" class="md-nav__link">
+    Instalamos Fail2Ban:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ficheros-de-configuracion" title="Ficheros de configuración" class="md-nav__link">
+    Ficheros de configuración
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generales" title="Generales" class="md-nav__link">
+    Generales
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" title="FILTERS" class="md-nav__link">
+    FILTERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions" title="ACTIONS" class="md-nav__link">
+    ACTIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jails" title="JAILS" class="md-nav__link">
+    JAILS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts-o-comandos-de-fail2ban" title="Scripts o comandos de Fail2Ban" class="md-nav__link">
+    Scripts o comandos de Fail2Ban
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-server" title="fail2ban-server" class="md-nav__link">
+    fail2ban-server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-client" title="fail2ban-client" class="md-nav__link">
+    fail2ban-client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-regex" title="fail2ban-regex" class="md-nav__link">
+    fail2ban-regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail2ban-testcases" title="fail2ban-testcases" class="md-nav__link">
+    fail2ban-testcases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/jpcarmona/generadormkdocs/edit/master/docs/blog/fail2ban.md" title="Editar esta página" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="instalacion-y-uso-de-herramienta-de-seguridad-fail2ban-en-debian-stretch-95">Instalación y uso de herramienta de seguridad Fail2Ban en Debian Stretch 9.5<a class="headerlink" href="#instalacion-y-uso-de-herramienta-de-seguridad-fail2ban-en-debian-stretch-95" title="Permanent link">&para;</a></h1>
+<p>Vamos a ver esta vez una buena herramienta que funcionará como Sistema de Detección de Intrusos (IDS o HIDS), Fail2ban nos permite ver los accesos o intentos de accesos en el sistema o en servicios del sistema y además podremos aplicar medidas. Funciona leyendo ficheros de logs y aplicando reglas de iptables.</p>
+<hr />
+<h2 id="caracteristicas-fail2ban">Características Fail2Ban<a class="headerlink" href="#caracteristicas-fail2ban" title="Permanent link">&para;</a></h2>
+<p>Está desarrollado en Python3 y tiene las siguientes funcionalidades:</p>
+<ul>
+<li>Cliente/Servidor.</li>
+<li>Multiprocesamiento.</li>
+<li>Autodetección del formato de la fecha.</li>
+<li>Soporte para bastantes servicios como ssh o apache.</li>
+<li>Soporte para realizar acciones como iptables o envío de correos.</li>
+<li>Compatible con SystemD y SystemV.</li>
+<li>Usa una base de datos SQLite3 para guardar los baneos.</li>
+</ul>
+<hr />
+<h2 id="definiciones">Definiciones<a class="headerlink" href="#definiciones" title="Permanent link">&para;</a></h2>
+<p>Fail2Ban usa </p>
+<ul>
+<li>
+<p><code>filter</code><br />
+Son las expresiones regulares utilizadas para el "parseo" de los logs.</p>
+</li>
+<li>
+<p><code>action</code><br />
+Son las acciones a realizar según los acontecimientos encontrados en los logs.</p>
+</li>
+<li>
+<p><code>jail</code>
+Son un conjunto de <code>filter</code> y <code>action</code> utilizados independientemente por cada servicio denominado. Puede ser por ejemplo "ssh" o "apache2" o incluso variaciones de estas ya incluidas.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p>Podemos crear <code>filter</code> , <code>action</code> y <code>jail</code> personalizados que veamos oportunos para nuestro sistema customizado.</p>
+</div>
+<hr />
+<h2 id="configuracion-inicial-de-la-maquina">Configuración inicial de la máquina<a class="headerlink" href="#configuracion-inicial-de-la-maquina" title="Permanent link">&para;</a></h2>
+<h3 id="maquina-virtual-con-vagrant-y-virtualbox">Máquina virtual con Vagrant y VirtualBox:<a class="headerlink" href="#maquina-virtual-con-vagrant-y-virtualbox" title="Permanent link">&para;</a></h3>
+<p>Fichero Vagrantfile:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
+<span class="c1"># vi: set ft=ruby :</span>
+
+<span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;nodo1&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">nodo1</span><span class="o">|</span>
+
+    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="s2">&quot;virtualbox&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;jpfail&quot;</span>
+    <span class="k">end</span>
+
+    <span class="n">nodo1</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;debian/stretch64&quot;</span>
+    <span class="n">nodo1</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;jpfail&quot;</span>
+    <span class="n">nodo1</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span>
+      <span class="ss">bridge</span><span class="p">:</span> <span class="s2">&quot;wlan0&quot;</span><span class="p">,</span>
+      <span class="ss">use_dhcp_assigned_default_route</span><span class="p">:</span> <span class="kp">true</span>
+
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="accedemos-mediante-ssh">Accedemos mediante SSH:<a class="headerlink" href="#accedemos-mediante-ssh" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>vagrant ssh
+</pre></div>
+</td></tr></table>
+
+<hr />
+<h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
+<h3 id="actualizacion-del-sistema">Actualización del sistema:<a class="headerlink" href="#actualizacion-del-sistema" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>suso su -
+apt update <span class="o">&amp;&amp;</span> apt -y upgrade
+</pre></div>
+</td></tr></table>
+
+<h3 id="requerimientos">Requerimientos:<a class="headerlink" href="#requerimientos" title="Permanent link">&para;</a></h3>
+<p>Actualmente la última versión de Fail2ban es la <code>0.9.6</code>.
+Esta versión requiere uno de los siguientes paquetes:</p>
+<p>Python 2.6 o superior.<br />
+ Python 3.2 o superior.<br />
+ PyPy.  </p>
+<h3 id="instalamos-fail2ban">Instalamos Fail2Ban:<a class="headerlink" href="#instalamos-fail2ban" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>apt -y install fail2ban
+</pre></div>
+</td></tr></table>
+
+<hr />
+<h2 id="ficheros-de-configuracion">Ficheros de configuración<a class="headerlink" href="#ficheros-de-configuracion" title="Permanent link">&para;</a></h2>
+<p>Los ficheros de configuración de Fail2Ban se encuentran en <code>/etc/fail2ban</code>.</p>
+<p>También existe uno en <code>/etc/default/fail2ban</code> que configura el usuario que usará Fail2Ban que por defecto es "root" además se podrá configurar con opciones del arranque de esta herramienta.</p>
+<h3 id="generales">Generales<a class="headerlink" href="#generales" title="Permanent link">&para;</a></h3>
+<ul>
+<li>fail2ban.conf</li>
+</ul>
+<p>Es la configuración principal de Fail2Ban y en el configuraremos lo siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">loglevel</span> <span class="o">=</span> INFO
+
+<span class="nv">logtarget</span> <span class="o">=</span> /var/log/fail2ban.log
+
+<span class="nv">syslogsocket</span> <span class="o">=</span> auto
+
+<span class="nv">socket</span> <span class="o">=</span> /var/run/fail2ban/fail2ban.sock
+
+<span class="nv">pidfile</span> <span class="o">=</span> /var/run/fail2ban/fail2ban.pid
+
+<span class="nv">dbfile</span> <span class="o">=</span> /var/lib/fail2ban/fail2ban.sqlite3
+
+<span class="nv">dbpurgeage</span> <span class="o">=</span> <span class="m">86400</span>
+</pre></div>
+</td></tr></table>
+
+<p>También podremos modificar estas configuraciones con el comando <code>fail2ban-client</code> que veremos más adelante.</p>
+<ul>
+<li>paths-*.conf</li>
+</ul>
+<p>Es la declaración de los directorios de los logs usados con esta herramienta.</p>
+<h3 id="filters">FILTERS<a class="headerlink" href="#filters" title="Permanent link">&para;</a></h3>
+<h3 id="actions">ACTIONS<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h3>
+<h3 id="jails">JAILS<a class="headerlink" href="#jails" title="Permanent link">&para;</a></h3>
+<ul>
+<li>jail.conf</li>
+</ul>
+<p>Es la configuración principal de los <code>JAILS</code>  </p>
+<hr />
+<h2 id="scripts-o-comandos-de-fail2ban">Scripts o comandos de Fail2Ban<a class="headerlink" href="#scripts-o-comandos-de-fail2ban" title="Permanent link">&para;</a></h2>
+<h3 id="fail2ban-server">fail2ban-server<a class="headerlink" href="#fail2ban-server" title="Permanent link">&para;</a></h3>
+<p>Este arranca en segundo plano automáticamente al instalarse Fail2Ban y es el proceso principal.  </p>
+<p>Opciones disponibles:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>-b                   start in background
+-f                   start in foreground
+-s &lt;FILE&gt;            socket path
+-p &lt;FILE&gt;            pidfile path
+-x                   force execution of the server
+</pre></div>
+</td></tr></table>
+
+<h3 id="fail2ban-client">fail2ban-client<a class="headerlink" href="#fail2ban-client" title="Permanent link">&para;</a></h3>
+<p>Es el "frontend" y el que se comunica con el servidor enviándole órdenes y configuraciones.  </p>
+<p>Opciones disponibles:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>-c &lt;DIR&gt;                configuration directory
+-d                      dump configuration. For debugging
+-i                      interactive mode
+-v                      increase verbosity
+-q                      decrease verbosity
+-x                      force execution of the server
+</pre></div>
+</td></tr></table>
+
+<p>Comandos básicos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>reload                  reloads the configuration
+reload &lt;JAIL&gt;           reloads the jail &lt;JAIL&gt;
+stop                    stops all jails and terminate the server
+status                  gets the current status of the server
+ping                    tests <span class="k">if</span> the server is alive
+</pre></div>
+</td></tr></table>
+
+<p>Comandos de log:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">set</span> loglevel &lt;LEVEL&gt;                     sets logging level to &lt;LEVEL&gt;.
+                                         Levels: CRITICAL, ERROR, WARNING,
+                                         NOTICE, INFO, DEBUG
+
+get loglevel                             gets the logging level
+
+<span class="nb">set</span> logtarget &lt;TARGET&gt;                   sets logging target to &lt;TARGET&gt;.
+                                         Can be STDOUT, STDERR, SYSLOG or a
+                                         file
+
+get logtarget                            gets logging target
+
+<span class="nb">set</span> syslogsocket auto<span class="p">|</span>&lt;SOCKET&gt;           sets the syslog socket path to
+                                         auto or &lt;SOCKET&gt;. Only used <span class="k">if</span>
+                                         logtarget is SYSLOG
+
+get syslogsocket                         gets syslog socket path
+
+flushlogs                                flushes the logtarget <span class="k">if</span> a file
+                                         and reopens it. For log rotation.
+</pre></div>
+</td></tr></table>
+
+<p>Comandos de la base de datos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">set</span> dbfile &lt;FILE&gt;                        <span class="nb">set</span> the location of fail2ban
+                                         persistent datastore. Set to
+                                         <span class="s2">&quot;None&quot;</span> to disable
+
+get dbfile                               get the location of fail2ban
+                                         persistent datastore
+
+<span class="nb">set</span> dbpurgeage &lt;SECONDS&gt;                 sets the max age in &lt;SECONDS&gt; that
+                                         <span class="nb">history</span> of bans will be kept
+
+get dbpurgeage                           gets the max age in seconds that
+                                         <span class="nb">history</span> of bans will be kept
+</pre></div>
+</td></tr></table>
+
+<p>Además tiene una bastante cantidad de comandos que actúan sobre la configuración de los <code>JAILS</code> en el que veremos algún ejemplo más adelante.</p>
+<h3 id="fail2ban-regex">fail2ban-regex<a class="headerlink" href="#fail2ban-regex" title="Permanent link">&para;</a></h3>
+<p>Se usa para realizar tests con expresiones regulares específicas o personalizadas.</p>
+<h3 id="fail2ban-testcases">fail2ban-testcases<a class="headerlink" href="#fail2ban-testcases" title="Permanent link">&para;</a></h3>
+<p>Se usa para realizar un test general.</p>
+<p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2Ban</a></p>
+<p><img src="../../img/oracleinstall/captura1.png" alt="captura1" width="500" height="400" /></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../oracleinstall/" title="Install Oracle 12" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Install Oracle 12
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../about/" title="Sobre mí" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Sobre mí
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"> <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"> Licencia Creative Commons Atribución 4.0 Internacional</a>
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/jpcarmona/" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/JPCR92" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+          
+            
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+              
+            
+          
+          
+            <script src="../../assets/javascripts/lunr/lunr.multi.js"></script>
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-36723568-3","mkdocs.org"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
