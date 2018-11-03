@@ -409,69 +409,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#line-176" title="Line 176" class="md-nav__link">
-    Line 176
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to" title="TO  :" class="md-nav__link">
-    TO  :
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line-279-280" title="Line 279-280" class="md-nav__link">
-    Line 279-280
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from_1" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to_1" title="TO  :" class="md-nav__link">
-    TO  :
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line-3041-3042" title="Line 3041-3042" class="md-nav__link">
-    Line 3041-3042
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from_2" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to_2" title="TO  :" class="md-nav__link">
-    TO  :
-  </a>
-  
-</li>
-      
       
       
       
@@ -556,69 +493,6 @@
         <li class="md-nav__item">
   <a href="#instalacion-de-oracle" title="Instalación de Oracle:" class="md-nav__link">
     Instalación de Oracle:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line-176" title="Line 176" class="md-nav__link">
-    Line 176
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to" title="TO  :" class="md-nav__link">
-    TO  :
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line-279-280" title="Line 279-280" class="md-nav__link">
-    Line 279-280
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from_1" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to_1" title="TO  :" class="md-nav__link">
-    TO  :
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line-3041-3042" title="Line 3041-3042" class="md-nav__link">
-    Line 3041-3042
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#from_2" title="FROM:" class="md-nav__link">
-    FROM:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to_2" title="TO  :" class="md-nav__link">
-    TO  :
   </a>
   
 </li>
@@ -1017,56 +891,8 @@ mkdir -p /opt/oracle/product/12.2.0/dbhome_1/precomp/lib/proc
 </td></tr></table>
 
 <hr />
-<ul>
-<li>Configurar Actualizaciones de Seguridad</li>
-</ul>
-<p>Demarcamos la casilla para recibir actualizaciones y continuamos con <code>Siguiente &gt;</code>.</p>
-<p><img src="../../img/oracleinstall/captura2.png" alt="captura2" width="500" height="400" /></p>
-<hr />
 <p>https://localhost:5500/em</p>
-<p>ERRORESSS !!</p>
-<p>mkdir /opt/oracle/product/12.2.0/dbhome_1/precomp/lib/proc
-chown oracle:oinstall /opt/oracle/product/12.2.0/dbhome_1/precomp/lib/proc</p>
-<h2 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>During the linking phase, you will see the following error.</p>
-<p>Error in invoking target 'links proc gen_pcscfg procob' of makefile
-'/u01/app/oracle/product/12.1.0.1/db_1/precomp/lib/ins_precomp.mk'.
-See
-'/u01/app/oraInventory/logs/installActions2014-04-26_08-07-04PM.log'
-for details.</p>
-<p>To fix it, do the following:</p>
-<p>rm -rf $ORACLE_HOME/lib/stubs/*
-cp $ORACLE_HOME/rdbms/lib/env_rdbms.mk $ORACLE_HOME/rdbms/lib/env_rdbms.mk.orig</p>
-<p>Perform the following modifications to the "$ORACLE_HOME/rdbms/lib/env_rdbms.mk" file.</p>
-<h2 id="line-176">Line 176<a class="headerlink" href="#line-176" title="Permanent link">&para;</a></h2>
-<h2 id="from">FROM:<a class="headerlink" href="#from" title="Permanent link">&para;</a></h2>
-<p>LINKTTLIBS=$(LLIBCLNTSH) $(ORACLETTLIBS) $(LINKLDLIBS)</p>
-<h2 id="to">TO  :<a class="headerlink" href="#to" title="Permanent link">&para;</a></h2>
-<p>LINKTTLIBS=$(LLIBCLNTSH) $(ORACLETTLIBS) $(LINKLDLIBS) -lons</p>
-<h2 id="line-279-280">Line 279-280<a class="headerlink" href="#line-279-280" title="Permanent link">&para;</a></h2>
-<h2 id="from_1">FROM:<a class="headerlink" href="#from_1" title="Permanent link">&para;</a></h2>
-<p>LINK=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS) $(COMPSOBJS)
-LINK32=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS32) $(COMPSOBJS)</p>
-<h2 id="to_1">TO  :<a class="headerlink" href="#to_1" title="Permanent link">&para;</a></h2>
-<p>LINK=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS) $(COMPSOBJS) -Wl,--no-as-needed
-LINK32=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS32) $(COMPSOBJS) -Wl,--no-as-needed</p>
-<h2 id="line-3041-3042">Line 3041-3042<a class="headerlink" href="#line-3041-3042" title="Permanent link">&para;</a></h2>
-<h2 id="from_2">FROM:<a class="headerlink" href="#from_2" title="Permanent link">&para;</a></h2>
-<p>TG4PWD_LINKLINE= $(LINK) $(OPT) $(TG4PWDMAI) \
-        $(LLIBTHREAD) $(LLIBCLNTSH) $(LINKLDLIBS)</p>
-<h2 id="to_2">TO  :<a class="headerlink" href="#to_2" title="Permanent link">&para;</a></h2>
-<p>TG4PWD_LINKLINE= $(LINK) $(OPT) $(TG4PWDMAI) \
-        $(LLIBTHREAD) $(LLIBCLNTSH) $(LINKLDLIBS) -lnnz12</p>
-<h2 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Error al llamar al destino 'install' del archivo make '/opt/oracle/product/12.2.0/dbhome_2/ctx/lib/ins_ctx.mk'. Consulte '/opt/oraInventory2/logs/installActions2018-10-20_11-30-33PM.log' para obtener más información.</p>
-<p>Error al llamar al destino 'install' del archivo make '/opt/oracle/product/12.2.0/dbhome_2/plsql/lib/ins_plsql.mk'. Consulte '/opt/oraInventory2/logs/installActions2018-10-20_11-30-33PM.log' para obtener más información.</p>
-<p>Error al llamar al destino 'all_no_orcl' del archivo make '/opt/oracle/product/12.2.0/dbhome_2/rdbms/lib/ins_rdbms.mk'. Consulte '/opt/oraInventory2/logs/installActions2018-10-20_11-30-33PM.log' para obtener más información.</p>
-<p>Error al llamar al destino 'utilities' del archivo make '/opt/oracle/product/12.2.0/dbhome_2/rdbms/lib/ins_rdbms.mk'. Consulte '/opt/oraInventory2/logs/installActions2018-10-20_11-30-33PM.log' para obtener más información.</p>
-<p>Error al llamar al destino 'irman ioracle rat_off dm_off olap_off part_off' del archivo make '/opt/oracle/product/12.2.0/dbhome_2/rdbms/lib/ins_rdbms.mk'. Consulte '/opt/oraInventory2/logs/installActions2018-10-20_11-30-33PM.log' para obtener más información.</p>
-<h3 id="_3"><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p><a href="http://joedicastro.com/consejos">Enlace 1</a>, <a href="http://joedicastro.com/consejos" title="Consejos">Enlace 2</a>, <a href="http://joedicastro.com/">Enlace 3</a></p>
-<p>apt-get install default-jdk ### no estoy seguro</p>
-<p>dpkg --add-architecture i386 ### no creo que haga falta</p>
                 
                   
                 
