@@ -671,9 +671,69 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuracion-para-mysql-y-apache2" title="Configuración para mysql y Apache2" class="md-nav__link">
-    Configuración para mysql y Apache2
+  <a href="#configuracion-para-apache2-y-mysqlmariadb" title="Configuración para Apache2 y mysql(mariadb)" class="md-nav__link">
+    Configuración para Apache2 y mysql(mariadb)
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache2" title="Apache2" class="md-nav__link">
+    Apache2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-prueba-de-apache2" title="Configuración de prueba de Apache2" class="md-nav__link">
+    Configuración de prueba de Apache2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciacion-de-jail-apache-auth" title="Iniciación de JAIL apache-auth" class="md-nav__link">
+    Iniciación de JAIL apache-auth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-jail-apache-auth" title="Prueba de JAIL apache-auth" class="md-nav__link">
+    Prueba de JAIL apache-auth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlmariadb" title="mysql(mariadb)" class="md-nav__link">
+    mysql(mariadb)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-prueba-de-mysql" title="Configuración de prueba de mysql" class="md-nav__link">
+    Configuración de prueba de mysql
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1003,9 +1063,69 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuracion-para-mysql-y-apache2" title="Configuración para mysql y Apache2" class="md-nav__link">
-    Configuración para mysql y Apache2
+  <a href="#configuracion-para-apache2-y-mysqlmariadb" title="Configuración para Apache2 y mysql(mariadb)" class="md-nav__link">
+    Configuración para Apache2 y mysql(mariadb)
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache2" title="Apache2" class="md-nav__link">
+    Apache2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-prueba-de-apache2" title="Configuración de prueba de Apache2" class="md-nav__link">
+    Configuración de prueba de Apache2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciacion-de-jail-apache-auth" title="Iniciación de JAIL apache-auth" class="md-nav__link">
+    Iniciación de JAIL apache-auth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-jail-apache-auth" title="Prueba de JAIL apache-auth" class="md-nav__link">
+    Prueba de JAIL apache-auth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlmariadb" title="mysql(mariadb)" class="md-nav__link">
+    mysql(mariadb)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-prueba-de-mysql" title="Configuración de prueba de mysql" class="md-nav__link">
+    Configuración de prueba de mysql
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1634,9 +1754,467 @@ Que esto remite al fichero <code>/etc/fail2ban/paths-common.conf</code> donde:</
 
 <p>Que será la <code>action</code> definida en el fichero <code>/etc/fail2ban/action.d/iptables-multiport.conf</code>.</p>
 <hr />
-<h2 id="configuracion-para-mysql-y-apache2">Configuración para mysql y Apache2<a class="headerlink" href="#configuracion-para-mysql-y-apache2" title="Permanent link">&para;</a></h2>
+<h2 id="configuracion-para-apache2-y-mysqlmariadb">Configuración para Apache2 y mysql(mariadb)<a class="headerlink" href="#configuracion-para-apache2-y-mysqlmariadb" title="Permanent link">&para;</a></h2>
+<h3 id="apache2">Apache2<a class="headerlink" href="#apache2" title="Permanent link">&para;</a></h3>
+<p>El uso que le daremos a esta herramienta con Apcahe2 será activar el JAIL <code>apache-auth</code> el cual detectará los intentos fallidos de autenticación en sitios web.</p>
+<h4 id="configuracion-de-prueba-de-apache2">Configuración de prueba de Apache2<a class="headerlink" href="#configuracion-de-prueba-de-apache2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Creamos el directorio de la web:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mkdir -p /var/www/fail2ban
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Creamos el fichero <code>index.html</code> de la web:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">&lt;!DOCTYPE HTML&gt;</span>
+<span class="s1">&lt;html lang=&quot;es&quot;&gt;</span>
+<span class="s1">  &lt;head&gt;</span>
+<span class="s1">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</span>
+<span class="s1">    &lt;title&gt;Prueba Fail2Ban&lt;/title&gt;</span>
+<span class="s1">  &lt;/head&gt;</span>
+<span class="s1">  &lt;body&gt;</span>
+<span class="s1">  &lt;h1&gt;Prueba autenticación fallida con Fail2ban&lt;/h1&gt;</span>
+<span class="s1">  &lt;/body&gt;</span>
+<span class="s1">&lt;/html&gt;</span>
+
+<span class="s1">&#39;&#39;&#39;</span> &gt;&gt; /var/www/fail2ban/index.html
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Damos permisos a <code>www-data</code>:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>chown -R www-data:www-data /var/www
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Creamos el sitio en Apache2:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">&lt;VirtualHost *:80&gt;</span>
+<span class="s1">        ServerName www.fail2ban.org</span>
+<span class="s1">        ServerAdmin webmaster@localhost</span>
+<span class="s1">        DocumentRoot /var/www/fail2ban</span>
+
+<span class="s1">        &lt;Directory /var/www/fail2ban/&gt;</span>
+<span class="s1">          AuthType basic</span>
+<span class="s1">          AuthName &quot;PRIVADO&quot;</span>
+<span class="s1">          AuthUserFile /etc/apache2/password</span>
+<span class="s1">          Require valid-user</span>
+<span class="s1">        &lt;/Directory&gt;</span>
+
+<span class="s1">        ErrorLog ${APACHE_LOG_DIR}/error.log</span>
+<span class="s1">        CustomLog ${APACHE_LOG_DIR}/access.log combined</span>
+
+<span class="s1">&lt;/VirtualHost&gt;</span>
+
+<span class="s1"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</span>
+
+<span class="s1">&#39;&#39;&#39;</span> &gt; /etc/apache2/sites-available/fail2ban.conf
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Activamos el sitio:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a2ensite fail2ban.conf
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Y recargamos la configuración de Apache2:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>systemctl reload apache2
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<p>Para acceder a esta página desde nuestra máquina anfitrión debemos configurar el <code>/etc/hosts</code> de esta.</p>
+</div>
+<h4 id="iniciacion-de-jail-apache-auth">Iniciación de JAIL <code>apache-auth</code><a class="headerlink" href="#iniciacion-de-jail-apache-auth" title="Permanent link">&para;</a></h4>
+<p>Lo primero será añadir en el fichero <code>/etc/fail2ban/jail.d/defaults-debian.conf</code> lo siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>apache-auth<span class="o">]</span>
+<span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos hacerlo con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">[apache-auth]</span>
+<span class="s1">enabled = true</span>
+
+<span class="s1">&#39;&#39;&#39;</span> &gt;&gt; /etc/fail2ban/jail.d/defaults-debian.conf
+</pre></div>
+</td></tr></table>
+
+<p>Ahora recargamos la configuración con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client reload
+</pre></div>
+</td></tr></table>
+
+<p>Ya podremos trabajar con este JAIL activado.</p>
+<h4 id="prueba-de-jail-apache-auth">Prueba de JAIL <code>apache-auth</code><a class="headerlink" href="#prueba-de-jail-apache-auth" title="Permanent link">&para;</a></h4>
+<p>Comprobamos que está activado con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status
+<span class="p">|</span>- Number of jail:  <span class="m">2</span>
+<span class="sb">`</span>- Jail list: apache-auth, sshd
+</pre></div>
+</td></tr></table>
+
+<p>Vemos el estado del JAIL <code>apache-auth</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status apache-auth
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status <span class="k">for</span> the jail: apache-auth
+<span class="p">|</span>- Filter
+<span class="p">|</span>  <span class="p">|</span>- Currently failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="p">|</span>- Total failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="sb">`</span>- File list:  /var/log/apache2/error.log
+<span class="sb">`</span>- Actions
+   <span class="p">|</span>- Currently banned: <span class="m">0</span>
+   <span class="p">|</span>- Total banned: <span class="m">0</span>
+   <span class="sb">`</span>- Banned IP list: 
+</pre></div>
+</td></tr></table>
+
+<p>También podemos ver más fácilmente la configuración de los JAIL mediante los comandos de Fail2Ban:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>root@jpfail:~# fail2ban-client get apache-auth 
+action            bantime           ignorecommand     logencoding       usedns
+actionmethods     datepattern       ignoreip          logpath           
+actionproperties  failregex         ignoreregex       maxlines          
+actions           findtime          journalmatch      maxretry          
+root@jpfail:~# fail2ban-client get apache-auth actions
+The jail apache-auth has the following actions:
+iptables-multiport
+root@jpfail:~# 
+</pre></div>
+</td></tr></table>
+
+<p>Ahora realizamos varios intentos fallidos de autenticación en el sitio web y vemos el estado del JAIL:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status apache-auth
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status <span class="k">for</span> the jail: apache-auth
+<span class="p">|</span>- Filter
+<span class="p">|</span>  <span class="p">|</span>- Currently failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="p">|</span>- Total failed: <span class="m">5</span>
+<span class="p">|</span>  <span class="sb">`</span>- File list:  /var/log/apache2/error.log
+<span class="sb">`</span>- Actions
+   <span class="p">|</span>- Currently banned: <span class="m">1</span>
+   <span class="p">|</span>- Total banned: <span class="m">1</span>
+   <span class="sb">`</span>- Banned IP list: <span class="m">192</span>.168.1.4 
+</pre></div>
+</td></tr></table>
+
+<p>Para eliminar este JAIL podemos hacerlo de 2 maneras:</p>
+<ul>
+<li>
+<p>Editando el fichero <code>/etc/fail2ban/jail.d/defaults-debian.conf</code>, eliminando las líneas de este JAIL en concreto y haciendo un "reload".</p>
+</li>
+<li>
+<p>O con el comando:</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client stop apache-auth
+</pre></div>
+</td></tr></table>
+
+<h3 id="mysqlmariadb">mysql(mariadb)<a class="headerlink" href="#mysqlmariadb" title="Permanent link">&para;</a></h3>
+<p>El uso que le daremos a esta herramienta con mysql será activar el JAIL <code>mysql-auth</code> el cual detectará los intentos fallidos de autenticación en las bases de datos del sistema.</p>
+<h4 id="configuracion-de-prueba-de-mysql">Configuración de prueba de mysql<a class="headerlink" href="#configuracion-de-prueba-de-mysql" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Entramos en Mariadb como ROOT:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mariadb -u root
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Creamos un usuario:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;fail2ban&#39;</span><span class="o">@</span><span class="s1">&#39;192.168.1.4&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;fail2ban&#39;</span><span class="p">;</span>
+<span class="n">EXIT</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Configuramos mariadb para que podamos acceder desde una red cualquiera:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>nano /etc/mysql/mariadb.conf.d/50-server.cnf
+
+bind-address            <span class="o">=</span> <span class="m">0</span>.0.0.0
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Configuramos mariadb para que guarde los logs mas severos en su fichero log de error:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;log-warnings=2&quot;</span> &gt;&gt; /etc/mysql/mariadb.conf.d/50-server.cnf
+
+systemctl restart mysqld
+</pre></div>
+</td></tr></table>
+
+<h1 id="-le-concedemos-al-nuevo-usuario-todos-los-permisos-para-que-pueda-crear-tablas-etc">-Le concedemos al nuevo usuario todos los permisos para que pueda crear tablas, etc... :<a class="headerlink" href="#-le-concedemos-al-nuevo-usuario-todos-los-permisos-para-que-pueda-crear-tablas-etc" title="Permanent link">&para;</a></h1>
+<p>GRANT ALL PRIVILEGES ON * . * TO 'juanpe'@'localhost';
+  EXIT;</p>
+<h1 id="-accedemos-como-el-usuario-nuevo">--Accedemos como el usuario nuevo:<a class="headerlink" href="#-accedemos-como-el-usuario-nuevo" title="Permanent link">&para;</a></h1>
+<p>mysql -u juanpe -p</p>
+<h1 id="-creamos-base-de-datos">-Creamos base de datos:<a class="headerlink" href="#-creamos-base-de-datos" title="Permanent link">&para;</a></h1>
+<p>CREATE DATABASE juanpe;</p>
+<h4 id="iniciacion-de-jail-mysqld-auth">Iniciación de JAIL <code>mysqld-auth</code><a class="headerlink" href="#iniciacion-de-jail-mysqld-auth" title="Permanent link">&para;</a></h4>
+<p>Añadimos en el fichero <code>/etc/fail2ban/jail.d/defaults-debian.conf</code> lo siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">[mysqld-auth]</span>
+<span class="s1">enabled = true</span>
+
+<span class="s1">&#39;&#39;&#39;</span> &gt;&gt; /etc/fail2ban/jail.d/defaults-debian.conf
+</pre></div>
+</td></tr></table>
+
+<p>Recargamos la configuración:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client reload
+</pre></div>
+</td></tr></table>
+
+<p>Este JAIL necesita un poco de configuración extra. Tendremos que cambiar el <code>logpath</code>.  </p>
+<p>Eliminamos el actual con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client <span class="nb">set</span> mysqld-auth dellogpath /var/log/daemon.log
+</pre></div>
+</td></tr></table>
+
+<p>Y añadimos el nuevo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client <span class="nb">set</span> mysqld-auth addlogpath /var/log/mysql/error.log
+</pre></div>
+</td></tr></table>
+
+<h4 id="prueba-de-jail-mysqld-auth">Prueba de JAIL <code>mysqld-auth</code><a class="headerlink" href="#prueba-de-jail-mysqld-auth" title="Permanent link">&para;</a></h4>
+<p>Comprobamos que está activado con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status
+<span class="p">|</span>- Number of jail:  <span class="m">2</span>
+<span class="sb">`</span>- Jail list: mysqld-auth, sshd
+</pre></div>
+</td></tr></table>
+
+<p>Vemos el estado del JAIL <code>mysqld-auth</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status <span class="k">for</span> the jail: mysqld-auth
+<span class="p">|</span>- Filter
+<span class="p">|</span>  <span class="p">|</span>- Currently failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="p">|</span>- Total failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="sb">`</span>- File list:  /var/log/mysql/error.log
+<span class="sb">`</span>- Actions
+   <span class="p">|</span>- Currently banned: <span class="m">0</span>
+   <span class="p">|</span>- Total banned: <span class="m">0</span>
+   <span class="sb">`</span>- Banned IP list: 
+</pre></div>
+</td></tr></table>
+
+<p>Ahora realizamos varios intentos fallidos de autenticación en la base de datos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+Enter password: 
+ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
+<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+Enter password: 
+ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
+<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+Enter password: 
+ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
+<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+Enter password: 
+ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
+<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+Enter password: 
+ERROR <span class="m">2003</span> <span class="o">(</span>HY000<span class="o">)</span>: Can<span class="s1">&#39;t connect to MySQL server on &#39;</span><span class="m">192</span>.168.1.27<span class="err">&#39;</span> <span class="o">(</span><span class="m">111</span> <span class="s2">&quot;Connection refused&quot;</span><span class="o">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Al final me deniega el acceso aunque ponga bien la contraseña.</p>
+<p>Vemos el estado del JAIL:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status mysqld-auth
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status <span class="k">for</span> the jail: mysqld-auth
+<span class="p">|</span>- Filter
+<span class="p">|</span>  <span class="p">|</span>- Currently failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="p">|</span>- Total failed: <span class="m">5</span>
+<span class="p">|</span>  <span class="sb">`</span>- File list:  /var/log/mysql/error.log
+<span class="sb">`</span>- Actions
+   <span class="p">|</span>- Currently banned: <span class="m">1</span>
+   <span class="p">|</span>- Total banned: <span class="m">1</span>
+   <span class="sb">`</span>- Banned IP list: <span class="m">192</span>.168.1.4
+</pre></div>
+</td></tr></table>
+
+<p>Si queremos "desbanear" la ip podemos usar lo siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client <span class="nb">set</span> mysqld-auth unbanip <span class="m">192</span>.168.1.4
+</pre></div>
+</td></tr></table>
+
+<p>Vemos el estado del JAIL:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client status mysqld-auth
+</pre></div>
+</td></tr></table>
+
+<p>Nos responde:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Status <span class="k">for</span> the jail: mysqld-auth
+<span class="p">|</span>- Filter
+<span class="p">|</span>  <span class="p">|</span>- Currently failed: <span class="m">0</span>
+<span class="p">|</span>  <span class="p">|</span>- Total failed: <span class="m">5</span>
+<span class="p">|</span>  <span class="sb">`</span>- File list:  /var/log/mysql/error.log
+<span class="sb">`</span>- Actions
+   <span class="p">|</span>- Currently banned: <span class="m">0</span>
+   <span class="p">|</span>- Total banned: <span class="m">1</span>
+   <span class="sb">`</span>- Banned IP list: 
+</pre></div>
+</td></tr></table>
+
 <p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2Ban</a></p>
 <p><a href="https://www.comparitech.com/net-admin/network-intrusion-detection-tools/">10 IDS</a></p>
+<p><a href="https://mariadb.com/kb/en/library/server-system-variables/#log_warnings">MARIADB Configuration</a></p>
                 
                   
                 
