@@ -727,6 +727,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#iniciacion-de-jail-mysqld-auth" title="Iniciación de JAIL mysqld-auth" class="md-nav__link">
+    Iniciación de JAIL mysqld-auth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-jail-mysqld-auth" title="Prueba de JAIL mysqld-auth" class="md-nav__link">
+    Prueba de JAIL mysqld-auth
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -734,6 +748,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enlaces-de-interes-para-este-post" title="Enlaces de Interés para este Post" class="md-nav__link">
+    Enlaces de Interés para este Post
+  </a>
   
 </li>
       
@@ -1119,6 +1140,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#iniciacion-de-jail-mysqld-auth" title="Iniciación de JAIL mysqld-auth" class="md-nav__link">
+    Iniciación de JAIL mysqld-auth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-jail-mysqld-auth" title="Prueba de JAIL mysqld-auth" class="md-nav__link">
+    Prueba de JAIL mysqld-auth
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1126,6 +1161,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enlaces-de-interes-para-este-post" title="Enlaces de Interés para este Post" class="md-nav__link">
+    Enlaces de Interés para este Post
+  </a>
   
 </li>
       
@@ -2042,13 +2084,6 @@ systemctl restart mysqld
 </pre></div>
 </td></tr></table>
 
-<h1 id="-le-concedemos-al-nuevo-usuario-todos-los-permisos-para-que-pueda-crear-tablas-etc">-Le concedemos al nuevo usuario todos los permisos para que pueda crear tablas, etc... :<a class="headerlink" href="#-le-concedemos-al-nuevo-usuario-todos-los-permisos-para-que-pueda-crear-tablas-etc" title="Permanent link">&para;</a></h1>
-<p>GRANT ALL PRIVILEGES ON * . * TO 'juanpe'@'localhost';
-  EXIT;</p>
-<h1 id="-accedemos-como-el-usuario-nuevo">--Accedemos como el usuario nuevo:<a class="headerlink" href="#-accedemos-como-el-usuario-nuevo" title="Permanent link">&para;</a></h1>
-<p>mysql -u juanpe -p</p>
-<h1 id="-creamos-base-de-datos">-Creamos base de datos:<a class="headerlink" href="#-creamos-base-de-datos" title="Permanent link">&para;</a></h1>
-<p>CREATE DATABASE juanpe;</p>
 <h4 id="iniciacion-de-jail-mysqld-auth">Iniciación de JAIL <code>mysqld-auth</code><a class="headerlink" href="#iniciacion-de-jail-mysqld-auth" title="Permanent link">&para;</a></h4>
 <p>Añadimos en el fichero <code>/etc/fail2ban/jail.d/defaults-debian.conf</code> lo siguiente:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -2136,19 +2171,19 @@ systemctl restart mysqld
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>edro@jpdeb1:~/$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
-<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+pedro@jpdeb1:~$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
-<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+pedro@jpdeb1:~$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
-<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+pedro@jpdeb1:~$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
-<span class="o">(</span>mkdocs_env<span class="o">)</span> pedro@jpdeb1:~/Dropbox/github/generadormkdocs$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+pedro@jpdeb1:~$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">2003</span> <span class="o">(</span>HY000<span class="o">)</span>: Can<span class="s1">&#39;t connect to MySQL server on &#39;</span><span class="m">192</span>.168.1.27<span class="err">&#39;</span> <span class="o">(</span><span class="m">111</span> <span class="s2">&quot;Connection refused&quot;</span><span class="o">)</span>
 </pre></div>
@@ -2212,6 +2247,9 @@ ERROR <span class="m">2003</span> <span class="o">(</span>HY000<span class="o">)
 </pre></div>
 </td></tr></table>
 
+<p>Con esto terminamos este sencillo tutorial de esta herramienta tan simple pero a la vez tan funcional.</p>
+<hr />
+<h2 id="enlaces-de-interes-para-este-post">Enlaces de Interés para este Post<a class="headerlink" href="#enlaces-de-interes-para-este-post" title="Permanent link">&para;</a></h2>
 <p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2Ban</a></p>
 <p><a href="https://www.comparitech.com/net-admin/network-intrusion-detection-tools/">10 IDS</a></p>
 <p><a href="https://mariadb.com/kb/en/library/server-system-variables/#log_warnings">MARIADB Configuration</a></p>
