@@ -1825,12 +1825,23 @@ Que esto remite al fichero <code>/etc/fail2ban/paths-common.conf</code> donde:</
 </pre></div>
 </td></tr></table>
 
-<p>Le vamos a añadir la <code>action</code> para enviar correos:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client <span class="nb">set</span> mysqld-auth addactions mail
+<p>Le vamos a añadir la <code>action</code> para enviar correos editando el fichero <code>/etc/fail2ban/jail.d/defaults-debian.conf</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>sshd<span class="o">]</span>
+<span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">mta</span> <span class="o">=</span> mail
+<span class="nv">action</span> <span class="o">=</span> %<span class="o">(</span>action_mw<span class="o">)</span>s
 </pre></div>
 </td></tr></table>
 
-<p>Con esto si se crea algún "baneo" se enviará un correo al usuario local root por defecto.</p>
+<p>Recargamos la configruación:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client reload
+</pre></div>
+</td></tr></table>
+
+<p>Con esto si se crea algún "baneo" se enviará un correo al usuario local root por defecto además se envía un correo cada vez se inicia o para el JAIL.</p>
 <hr />
 <h2 id="configuracion-para-apache2-y-mysqlmariadb">Configuración para Apache2 y mysql(mariadb)<a class="headerlink" href="#configuracion-para-apache2-y-mysqlmariadb" title="Permanent link">&para;</a></h2>
 <h3 id="apache2">Apache2<a class="headerlink" href="#apache2" title="Permanent link">&para;</a></h3>
