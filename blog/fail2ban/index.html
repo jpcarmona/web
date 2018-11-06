@@ -660,6 +660,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enviar-correos" title="Enviar Correos" class="md-nav__link">
+    Enviar Correos
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1073,6 +1080,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enviar-correos" title="Enviar Correos" class="md-nav__link">
+    Enviar Correos
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1191,8 +1205,8 @@
                 
                 
                 <h1 id="instalacion-y-uso-de-herramienta-de-seguridad-fail2ban-en-debian-stretch-95">Instalación y uso de herramienta de seguridad Fail2Ban en Debian Stretch 9.5<a class="headerlink" href="#instalacion-y-uso-de-herramienta-de-seguridad-fail2ban-en-debian-stretch-95" title="Permanent link">&para;</a></h1>
-<p>Vamos a ver esta vez una buena herramienta que funcionará como Sistema de Detección de Intrusos (IDS o HIDS).<br />
-Fail2ban nos permite ver los accesos o intentos de accesos en el sistema o en servicios del sistema y además podremos aplicar medidas. Funciona leyendo ficheros de logs y aplicando reglas de iptables.</p>
+<p>Vamos a ver esta vez una buena herramienta que funcionará como Sistema de Detección de Intrusos (IDS o HIDS).  </p>
+<p>Fail2ban nos permite ver los accesos o intentos de accesos en el sistema o en servicios del sistema y además podremos aplicar medidas. Funciona leyendo ficheros de logs y aplicando reglas de iptables generalmente.</p>
 <hr />
 <h2 id="caracteristicas-fail2ban">Características Fail2Ban<a class="headerlink" href="#caracteristicas-fail2ban" title="Permanent link">&para;</a></h2>
 <p>Está desarrollado en Python3 y tiene las siguientes funcionalidades:</p>
@@ -1285,7 +1299,7 @@ Son un conjunto de <code>filter</code> y <code>action</code> utilizados independ
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <h3 id="actualizacion-del-sistema">Actualización del sistema:<a class="headerlink" href="#actualizacion-del-sistema" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>suso su -
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo su -
 apt update <span class="o">&amp;&amp;</span> apt -y upgrade
 </pre></div>
 </td></tr></table>
@@ -1425,9 +1439,9 @@ Esta versión requiere uno de los siguientes paquetes:</p>
 </pre></div>
 </td></tr></table>
 
-<p>Más abajo se definen las configuraciones de algunas <code>actions</code> y todos los <code>jails</code> que se pueden usar.</p>
+<p>Más abajo se definen las configuraciones de algunas <code>actions</code> y todos los <code>jails</code> que se pueden usar por defecto.</p>
 <h4 id="etcfail2banjaild42conf">/etc/fail2ban/jail.d/*.conf<a class="headerlink" href="#etcfail2banjaild42conf" title="Permanent link">&para;</a></h4>
-<p>Existe un solo fichero que es <code>/etc/fail2ban/jail.d/defaults-debian.conf</code>. En el se configurará la activación de los <code>jails</code>.</p>
+<p>Existe un solo fichero que es <code>/etc/fail2ban/jail.d/defaults-debian.conf</code>. En el se configurará la activación de los <code>jails</code> por defecto.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>sshd<span class="o">]</span>
 <span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
@@ -1795,6 +1809,28 @@ Que esto remite al fichero <code>/etc/fail2ban/paths-common.conf</code> donde:</
 </td></tr></table>
 
 <p>Que será la <code>action</code> definida en el fichero <code>/etc/fail2ban/action.d/iptables-multiport.conf</code>.</p>
+<h4 id="enviar-correos">Enviar Correos<a class="headerlink" href="#enviar-correos" title="Permanent link">&para;</a></h4>
+<p>Lo primero será instalar un servidor de correo, en nuestro caso usaremos postfix:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>apt install postfix
+</pre></div>
+</td></tr></table>
+
+<p>En las ventanas interactivas elegimos:</p>
+<ul>
+<li>Local Only</li>
+<li>fail2ban.org</li>
+</ul>
+<p>Tambien instalamos el cliente de correo que usa fail2ban por defecto:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>apt install bsd-mailx
+</pre></div>
+</td></tr></table>
+
+<p>Le vamos a añadir la <code>action</code> para enviar correos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>fail2ban-client <span class="nb">set</span> mysqld-auth addactions mail
+</pre></div>
+</td></tr></table>
+
+<p>Con esto si se crea algún "baneo" se enviará un correo al usuario local root por defecto.</p>
 <hr />
 <h2 id="configuracion-para-apache2-y-mysqlmariadb">Configuración para Apache2 y mysql(mariadb)<a class="headerlink" href="#configuracion-para-apache2-y-mysqlmariadb" title="Permanent link">&para;</a></h2>
 <h3 id="apache2">Apache2<a class="headerlink" href="#apache2" title="Permanent link">&para;</a></h3>
@@ -2171,7 +2207,7 @@ systemctl restart mysqld
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>edro@jpdeb1:~/$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>pedro@jpdeb1:~/$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
 Enter password: 
 ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;fail2ban&#39;</span>@<span class="s1">&#39;192.168.1.4&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
 pedro@jpdeb1:~$ mariadb -u fail2ban -h <span class="m">192</span>.168.1.27 -p
