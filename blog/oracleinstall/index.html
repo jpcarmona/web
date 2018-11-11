@@ -417,6 +417,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#iniciacion-de-la-base-de-datos" title="Iniciación de la base de datos" class="md-nav__link">
+    Iniciación de la base de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuracion-acceso-remoto-oracle" title="Configuración acceso remoto Oracle" class="md-nav__link">
     Configuración acceso remoto Oracle
   </a>
@@ -456,6 +463,18 @@
   <li class="md-nav__item">
     <a href="../fail2ban/" title="Fail2Ban" class="md-nav__link">
       Fail2Ban
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../postgresclient/" title="Acceso remoto Postgresql" class="md-nav__link">
+      Acceso remoto Postgresql
     </a>
   </li>
 
@@ -528,6 +547,13 @@
         <li class="md-nav__item">
   <a href="#accediendo-a-la-base-de-datos" title="Accediendo a la base de datos" class="md-nav__link">
     Accediendo a la base de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iniciacion-de-la-base-de-datos" title="Iniciación de la base de datos" class="md-nav__link">
+    Iniciación de la base de datos
   </a>
   
 </li>
@@ -1051,6 +1077,36 @@ Seleccionamos "Instalar".</p>
 -\ \ \ \ \ \ -Ó  <br />
 <code>echo 'alter session set "_ORACLE_SCRIPT"=true;' &gt;&gt; $ORACLE_HOME/sqlplus/admin/glogin.sql</code> </p>
 </div>
+<h2 id="iniciacion-de-la-base-de-datos">Iniciación de la base de datos<a class="headerlink" href="#iniciacion-de-la-base-de-datos" title="Permanent link">&para;</a></h2>
+<p>Por defecto si reinicio la máquina no arranca oracle asi que de momento la arrancaremos manualmente:</p>
+<ul>
+<li>Estado del Listener</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>lsnrctl status
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/oracleinstall/captura30.png" /></p>
+<ul>
+<li>Arrancamos el Listener:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>lsnrctl start
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/oracleinstall/captura31.png" /></p>
+<ul>
+<li>Arrancamos la base de datos:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sqlplus / as sysdba
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">startup</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/oracleinstall/captura32.png" /></p>
 <h2 id="configuracion-acceso-remoto-oracle">Configuración acceso remoto Oracle<a class="headerlink" href="#configuracion-acceso-remoto-oracle" title="Permanent link">&para;</a></h2>
 <p>Si necesitamos acceder mediante la red seguiremos los siguientes pasos:</p>
 <ul>
