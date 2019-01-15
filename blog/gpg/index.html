@@ -459,8 +459,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#servidores-de-claves" title="Servidores de claves" class="md-nav__link">
-    Servidores de claves
+  <a href="#servidores-de-claves-publicas" title="Servidores de claves públicas" class="md-nav__link">
+    Servidores de claves públicas
   </a>
   
     <nav class="md-nav">
@@ -480,8 +480,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#importacion-de-claves-publicas-del-servidor" title="Importación de claves públicas del servidor" class="md-nav__link">
+    Importación de claves públicas del servidor
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firma-de-claves" title="Firma de claves" class="md-nav__link">
+    Firma de claves
+  </a>
   
 </li>
       
@@ -587,8 +601,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#servidores-de-claves" title="Servidores de claves" class="md-nav__link">
-    Servidores de claves
+  <a href="#servidores-de-claves-publicas" title="Servidores de claves públicas" class="md-nav__link">
+    Servidores de claves públicas
   </a>
   
     <nav class="md-nav">
@@ -608,8 +622,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#importacion-de-claves-publicas-del-servidor" title="Importación de claves públicas del servidor" class="md-nav__link">
+    Importación de claves públicas del servidor
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firma-de-claves" title="Firma de claves" class="md-nav__link">
+    Firma de claves
+  </a>
   
 </li>
       
@@ -633,7 +661,13 @@
                 
                 
                 <h1 id="cifrado-y-firmas-con-gpg">Cifrado y firmas con GPG<a class="headerlink" href="#cifrado-y-firmas-con-gpg" title="Permanent link">&para;</a></h1>
-<p>INTRODUCCION llalala</p>
+<hr class="h3">
+
+<p>GPG (GNU Privacy Guard), que es un derivado libre de PGP, es una herramienta de seguridad en comunicaciones electrónicas y su utilidad es la de cifrar y firmar digitalmente, siendo además multiplataforma.</p>
+<p>GPG utiliza criptografía de clave pública para que los usuarios puedan comunicarse de un modo seguro. En un sistema de claves públicas cada usuario posee un par de claves, compuesto por una “clave privada” y una “clave pública”. Cada usuario debe mantener su clave privada secreta; no debe ser revelada nunca. La clave pública se puede entregar a cualquier persona con la que el usuario desee comunicarse.</p>
+<p>En esta entrada veremos como generar un par de claves y trabajar con ellas, además de usar un servidor de claves para subir y descargar claves públicas. También utilizaremos el cifrado y las firmas para enviar correos tanto en un sistema Linux(Debian) como en Windows.</p>
+<hr class="h3">
+
 <h2 id="generacion-exportacion-e-importacion-de-claves">Generación, exportación e importación de claves<a class="headerlink" href="#generacion-exportacion-e-importacion-de-claves" title="Permanent link">&para;</a></h2>
 <h3 id="creacion-par-de-claves-desatendido">Creación par de claves desatendido<a class="headerlink" href="#creacion-par-de-claves-desatendido" title="Permanent link">&para;</a></h3>
 <ul>
@@ -688,7 +722,7 @@
 <ul>
 <li>Creación par de claves:</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --verbose --batch --pinentry-mode loopback --passphrase-file frasedepaso --generate-key key_conf
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">time</span> gpg --verbose --batch --pinentry-mode loopback --passphrase-file frasedepaso --generate-key key_conf
 </pre></div>
 </td></tr></table>
 
@@ -696,7 +730,9 @@
 <p>Utilizamos la opción <code>--batch</code> para generar la clave de forma desatendida mediante el fichero <code>key_conf</code> y la opción <code>--pinentry-mode loopback --passphrase-file frasedepaso</code> es para especificar la frase de paso mediante un fichero.</p>
 </div>
 <p><img alt="" src="../../img/gpg/captura1.png" /></p>
-<p>Podemos ver que he utilizado <code>time</code> para enseñaros lo que tarda en generarse y os puede parecer raro que haya tardado solo 7 segundos ya que esto suele tardar varios minutos. La clave está en la generación de entropía que necesita GPG para la generación de claves. Esto lo explico a continuación.</p>
+<p>Podemos ver que he utilizado <code>time</code> para enseñaros lo que tarda en generarse y os puede parecer raro que haya tardado solo 6 segundos ya que esto suele tardar varios minutos. La clave está en la generación de entropía que necesita GPG para la generación de claves. Esto lo explico a continuación.</p>
+<hr class="h3">
+
 <h3 id="generacion-de-datos-aleatorios-para-una-fuente-de-entropia">Generación de datos aleatorios para una fuente de entropía<a class="headerlink" href="#generacion-de-datos-aleatorios-para-una-fuente-de-entropia" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Instalación de paquete:</li>
@@ -715,6 +751,8 @@
 <div class="admonition note">
 <p>Una vez ejecutado el demonio no hará falta ejecutarlo más si vamos a generar varias claves.</p>
 </div>
+<hr class="h3">
+
 <h3 id="exportacion-de-clave-a-fichero">Exportación de clave a fichero<a class="headerlink" href="#exportacion-de-clave-a-fichero" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Listamos las claves:</li>
@@ -723,28 +761,30 @@
 </pre></div>
 </td></tr></table>
 
-<p><img alt="" src="../../img/gpg/captura2.png" /></p>
 <ul>
 <li>Exportación de clave a un fichero:</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --pinentry-mode loopback --passphrase-file frasedepaso <span class="se">\</span>
---armor --export-secret-keys <span class="s1">&#39;iesgn 2019&#39;</span> &gt; juanpe_priv.key
+--armor --export-secret-keys <span class="s1">&#39;iesgn 2019 SAD&#39;</span> &gt; juanpe_priv.key
 </pre></div>
 </td></tr></table>
 
 <div class="admonition note">
 <ul>
 <li><code>--armor</code> : por defecto gpg exporta en binaro, de esta manera se exportará en texto plano.</li>
-<li><code>--export-secret-keys 'iesgn 2019'</code> : podemos utilizar como identificador para exportar la clave la huella, el nombre, el comentario o el email.</li>
+<li><code>--export-secret-keys 'iesgn 2019 SAD'</code> : podemos utilizar como identificador para exportar la clave la huella, el nombre, el comentario o el email.</li>
 </ul>
 </div>
+<p><img alt="" src="../../img/gpg/captura2.png" /></p>
+<hr class="h3">
+
 <h3 id="importacion-de-clave-desde-fichero">Importación de clave desde fichero<a class="headerlink" href="#importacion-de-clave-desde-fichero" title="Permanent link">&para;</a></h3>
 <p>Ahora si queremos mantener el par de claves en la base de datos(anillo de claves) de GPG personal de un usuario realizaremos lo siguiente:</p>
 <ul>
 <li>Importamos la clave desde un fichero:</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --pinentry-mode loopback --passphrase frasedepaso --import juanpe_priv.key
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --pinentry-mode loopback --passphrase-file frasedepaso --import juanpe_priv.key
 </pre></div>
 </td></tr></table>
 
@@ -755,7 +795,10 @@
 <li>Si por casualidad hemos borrado por error el directorio <code>.gnupg</code> necesitamos reiniciar el agente de GPG, podemos hacerlo reiniciando la máquina o ejecutando <code>gpgconf --kill gpg-agent</code>.</li>
 </ul>
 </div>
-<h2 id="servidores-de-claves">Servidores de claves<a class="headerlink" href="#servidores-de-claves" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../img/gpg/captura3.png" /></p>
+<hr class="h2">
+
+<h2 id="servidores-de-claves-publicas">Servidores de claves públicas<a class="headerlink" href="#servidores-de-claves-publicas" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p>En este apartado tendremos que tener un poco de paciencia, ya que estos servidores no responden con buena fluidez.</p>
 </div>
@@ -763,36 +806,41 @@
 <ul>
 <li>Añadiremos nuestra clave pública al servidor <code>pgp.rediris.es</code>:</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --verbose --keyserver pgp.rediris.es --send-keys 6CDB8ABAB811462E0F10CA799817655FF0B0BF63
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --verbose --keyserver pgp.rediris.es --send-keys D2FFE4FB6D99013CBE6937A9998DE59C0B7A8857
 </pre></div>
 </td></tr></table>
 
-<p><img alt="" src="../../img/gpg/captura3.png" /> !!!!!! volver a hacer</p>
-<div class="admonition attention">
-<p class="admonition-title">Atención</p>
-<ul>
-<li>Necesitaremos como dependecia el paquete <code>dirmngr</code>.</li>
-</ul>
+<div class="admonition note">
+<p>Tenemos que utilizar como identificador la huella de la clave.</p>
 </div>
+<ul>
+<li>Podemos ver que se ha subido:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --keyserver pgp.rediris.es --search-keys <span class="s1">&#39;iesgn 2019 SAD Juan Pedro Carmona Romero&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/gpg/captura4.png" /></p>
+<hr class="h3">
+
 <h3 id="revocar-nuestra-clave-en-el-servidor">Revocar nuestra clave en el servidor<a class="headerlink" href="#revocar-nuestra-clave-en-el-servidor" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Creamos clave de revocación:</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --pinentry-mode loopback --passphrase frasedepaso --gen-revoke jpcarmona92@gmail.com &gt; revocacion.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --pinentry-mode loopback --passphrase-file frasedepaso --gen-revoke jpcarmona92@gmail.com &gt; revocacion.txt
 </pre></div>
 </td></tr></table>
 
 <div class="admonition note">
 <p>Nos preguntará de si estamos seguros de revocar la clave y la razón.</p>
 </div>
-<p><img alt="" src="../../img/gpg/captura3.png" /> !!!!!! volver a hacer</p>
 <ul>
 <li>Añadimos la clave de revocación a la base de datos(anillo de claves) de GPG temporal:</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">GNUPGHOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>mktemp -d<span class="k">)</span><span class="s2">&quot;</span>
-gpg --pinentry-mode loopback --passphrase frasedepaso --import juanpe_priv.key
+gpg --pinentry-mode loopback --passphrase-file frasedepaso --import juanpe_priv.key
 gpg --import revocacion.txt
 </pre></div>
 </td></tr></table>
@@ -800,22 +848,87 @@ gpg --import revocacion.txt
 <div class="admonition note">
 <p>Lo hacemos de esta manera si no queremos revocar localmente nuestra clave.</p>
 </div>
-<p><img alt="" src="../../img/gpg/captura3.png" /> !!!!!! volver a hacer</p>
 <ul>
 <li>Enviamos revocación al servidor:</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --verbose --keyserver hkps://pgp.rediris.es --send-keys 6CDB8ABAB811462E0F10CA799817655FF0B0BF63
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>gpg --verbose --keyserver pgp.rediris.es --send-keys D2FFE4FB6D99013CBE6937A9998DE59C0B7A8857
 </pre></div>
 </td></tr></table>
 
-<div class="admonition note">
-<p>Tenemos que utilizar como identificador la huella de la clave.</p>
-</div>
-<p><img alt="" src="../../img/gpg/captura3.png" /> !!!!!! volver a hacer</p>
+<hr class="h3">
+
+<h3 id="importacion-de-claves-publicas-del-servidor">Importación de claves públicas del servidor<a class="headerlink" href="#importacion-de-claves-publicas-del-servidor" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Para buscar claves mediante comandos:
-gpg --keyserver pgp.rediris.es --search-keys 'Rafael Luque Clave para prácticas SAD'</li>
+<li>Teniendo un fichero con las huellas de las claves que vamos a importarº:</li>
 </ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; huellas</span>
+<span class="s">1CC4129B</span>
+<span class="s">145F279F</span>
+<span class="s">B07D73C6</span>
+<span class="s">58FCBCC4</span>
+<span class="s">57AAA184</span>
+<span class="s">541BCADC</span>
+<span class="s">C5335AF6</span>
+<span class="s">2F2ADD9C</span>
+<span class="s">EC621986</span>
+<span class="s">962D9232</span>
+<span class="s">4E4B7F6C</span>
+<span class="s">C4733426</span>
+<span class="s">F432D158</span>
+<span class="s">EOF</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Podemos buscarlas para verificar que son las que necesitamos:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --batch --keyserver pgp.rediris.es <span class="se">\</span>
+--search-keys <span class="nv">$i</span> <span class="m">2</span>&gt;/dev/null<span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/gpg/captura5.png" /></p>
+<ul>
+<li>Importaremos estas claves públicas a nuestro anillo de claves de GPG:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --batch --keyserver pgp.rediris.es --recv-keys <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../../img/gpg/captura6.png" /></p>
+<hr class="h2">
+
+<h2 id="firma-de-claves">Firma de claves<a class="headerlink" href="#firma-de-claves" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Firma de claves públicas:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --batch --pinentry-mode loopback --yes <span class="se">\</span>
+--passphrase-file frasedepaso --sign-key <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Subimos las claves públicas firmadas al servidor:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --keyserver pgp.rediris.es --send-keys <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
