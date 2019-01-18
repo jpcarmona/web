@@ -499,6 +499,74 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-con-mutt" title="Envío de correos cifrados y firmados con Mutt" class="md-nav__link">
+    Envío de correos cifrados y firmados con Mutt
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cifrado-y-firma-con-gpg" title="Cifrado y firma con GPG" class="md-nav__link">
+    Cifrado y firma con GPG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-y-envio-de-correo-con-mutt" title="Configuración y envío de correo con Mutt" class="md-nav__link">
+    Configuración y envío de correo con Mutt
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-con-thunderbird" title="Envío de correos cifrados y firmados con Thunderbird" class="md-nav__link">
+    Envío de correos cifrados y firmados con Thunderbird
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-cuenta-de-correo-a-thunderbird" title="Añadir cuenta de correo a Thunderbird" class="md-nav__link">
+    Añadir cuenta de correo a Thunderbird
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-complemento-enigmail" title="Instalación complemento Enigmail" class="md-nav__link">
+    Instalación complemento Enigmail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envio-de-correo-cifrado-y-firmado" title="Envío de correo cifrado y firmado" class="md-nav__link">
+    Envío de correo cifrado y firmado
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-en-windows" title="Envío de correos cifrados y firmados en Windows" class="md-nav__link">
+    Envío de correos cifrados y firmados en Windows
+  </a>
+  
+</li>
+      
       
       
       
@@ -637,6 +705,74 @@
         <li class="md-nav__item">
   <a href="#firma-de-claves" title="Firma de claves" class="md-nav__link">
     Firma de claves
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-con-mutt" title="Envío de correos cifrados y firmados con Mutt" class="md-nav__link">
+    Envío de correos cifrados y firmados con Mutt
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cifrado-y-firma-con-gpg" title="Cifrado y firma con GPG" class="md-nav__link">
+    Cifrado y firma con GPG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-y-envio-de-correo-con-mutt" title="Configuración y envío de correo con Mutt" class="md-nav__link">
+    Configuración y envío de correo con Mutt
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-con-thunderbird" title="Envío de correos cifrados y firmados con Thunderbird" class="md-nav__link">
+    Envío de correos cifrados y firmados con Thunderbird
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-cuenta-de-correo-a-thunderbird" title="Añadir cuenta de correo a Thunderbird" class="md-nav__link">
+    Añadir cuenta de correo a Thunderbird
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-complemento-enigmail" title="Instalación complemento Enigmail" class="md-nav__link">
+    Instalación complemento Enigmail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envio-de-correo-cifrado-y-firmado" title="Envío de correo cifrado y firmado" class="md-nav__link">
+    Envío de correo cifrado y firmado
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envio-de-correos-cifrados-y-firmados-en-windows" title="Envío de correos cifrados y firmados en Windows" class="md-nav__link">
+    Envío de correos cifrados y firmados en Windows
   </a>
   
 </li>
@@ -918,8 +1054,8 @@ gpg --import revocacion.txt
 <li>Firma de claves públicas:</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --batch --pinentry-mode loopback --yes <span class="se">\</span>
---passphrase-file frasedepaso --sign-key <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> clave in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --batch --pinentry-mode loopback --yes <span class="se">\</span>
+--passphrase-file frasedepaso --sign-key <span class="nv">$clave</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
@@ -929,6 +1065,130 @@ gpg --import revocacion.txt
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>cat huellas<span class="k">)</span> <span class="p">;</span><span class="k">do</span> gpg --keyserver pgp.rediris.es --send-keys <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
+
+<hr class="h2">
+
+<h2 id="envio-de-correos-cifrados-y-firmados-con-mutt">Envío de correos cifrados y firmados con Mutt<a class="headerlink" href="#envio-de-correos-cifrados-y-firmados-con-mutt" title="Permanent link">&para;</a></h2>
+<p>Para el envío de correos voy a utilizar mutt, un agente de correo por línea de comandos.</p>
+<h3 id="cifrado-y-firma-con-gpg">Cifrado y firma con GPG<a class="headerlink" href="#cifrado-y-firma-con-gpg" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lo primero que haremos será escribir el mensaje del correo:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;Esto es el mensaje&quot;</span> &gt; mensaje.txt
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Ahora procedemos a encryptar y firmar el mensaje:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cat mensaje.txt <span class="p">|</span> gpg --batch --pinentry-mode loopback --passphrase-file frasedepaso <span class="se">\</span>
+--encrypt --sign --armor --local-user <span class="s2">&quot;iesgn 2019 SAD&quot;</span> --recipient <span class="s2">&quot;rluque.profesor@gmail.com&quot;</span> <span class="se">\</span>
+&gt; mensajecifrado.txt
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<ul>
+<li><code>--local-user</code> : Es el identificador de la clave privada que usaremos para firmar.</li>
+<li>La contraseña que utilizamos para la frase de paso es la de la clave privada que utilizamos con la opción <code>--local-user</code>.</li>
+<li><code>--recipient</code> : Es el identificador de la clave pública que usaremos para cifrar.</li>
+</ul>
+</div>
+<hr class="h3">
+
+<h3 id="configuracion-y-envio-de-correo-con-mutt">Configuración y envío de correo con Mutt<a class="headerlink" href="#configuracion-y-envio-de-correo-con-mutt" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Configuración Mutt:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; .muttrc</span>
+<span class="s">set from = &quot;jpcarmona92@gmail.com&quot;</span>
+<span class="s">set realname = &quot;Juan Pedro Carmona&quot;</span>
+
+<span class="s">set smtp_url = &quot;smtps://jpcarmona92@gmail.com@smtp.gmail.com:465/&quot;</span>
+<span class="s">set smtp_pass = &quot;contraseña&quot;</span>
+<span class="s">EOF</span>
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<ul>
+<li><code>from</code> : Es la cuenta del correo que enviará los correos.</li>
+<li><code>realname</code> : Es el nombre del emisor.</li>
+<li><code>smtp_url</code> : Es el servidor smtp que utilizaremos.</li>
+<li><code>smtp_pass</code> : Es la contraseña de la cuenta de correo emisora.</li>
+</ul>
+</div>
+<ul>
+<li>Envío de correo con Mutt:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cat mensajecifrado.txt <span class="p">|</span> mutt -s <span class="s2">&quot;Esto es el asunto&quot;</span> rluque.profesor@gmail.com
+</pre></div>
+</td></tr></table>
+
+<div class="admonition attention">
+<p class="admonition-title">Atención</p>
+<p>Para enviar correos desde cualquier aplicación con el servidor smtp de gmail, tendremos que configurar en nuestra cuenta de Google, que permitimos el uso de aplicaciones no seguras.
+<a href="https://support.google.com/accounts/answer/6010255?hl=es">Tutorial de Google</a>.</p>
+</div>
+<hr class="h2">
+
+<h2 id="envio-de-correos-cifrados-y-firmados-con-thunderbird">Envío de correos cifrados y firmados con Thunderbird<a class="headerlink" href="#envio-de-correos-cifrados-y-firmados-con-thunderbird" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Instalamos Thunderbird:</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>apt install thunderbird thunderbird-l10n-es-es
+</pre></div>
+</td></tr></table>
+
+<h3 id="anadir-cuenta-de-correo-a-thunderbird">Añadir cuenta de correo a Thunderbird<a class="headerlink" href="#anadir-cuenta-de-correo-a-thunderbird" title="Permanent link">&para;</a></h3>
+<p>En el menú --&gt; Archivo --&gt; Nuevo --&gt; Cuenta de correo existente...
+Rellenamos los campos que aparecen.</p>
+<p><img alt="" src="../../img/gpg/captura7.png" /></p>
+<hr class="h3">
+
+<h3 id="instalacion-complemento-enigmail">Instalación complemento Enigmail<a class="headerlink" href="#instalacion-complemento-enigmail" title="Permanent link">&para;</a></h3>
+<p>En el menú --&gt; Herramientas --&gt; Complementos
+Buscamos Enigmail y lo agrefamos a Thunderbird.</p>
+<p><img alt="" src="../../img/gpg/captura8.png" /></p>
+<p><img alt="" src="../../img/gpg/captura9.png" /></p>
+<hr class="h3">
+
+<h3 id="envio-de-correo-cifrado-y-firmado">Envío de correo cifrado y firmado<a class="headerlink" href="#envio-de-correo-cifrado-y-firmado" title="Permanent link">&para;</a></h3>
+<p>En el menú --&gt; Nuevo --&gt; Mensaje</p>
+<p><img alt="" src="../../img/gpg/captura10.png" /></p>
+<ul>
+<li>Para seleccionar la clave privada con la que firmar:</li>
+</ul>
+<p>En el menú --&gt; Enigmail --&gt; Preferencias --&gt; Opciones de firmado/cifrado...</p>
+<p>Habilitamos soporte OpenGPG. Usamos un identificador de claves especifico y seleccionamos clave.</p>
+<p><img alt="" src="../../img/gpg/captura11.png" /></p>
+<ul>
+<li>Para cifrar el mensaje:</li>
+</ul>
+<p>Por defecto si tenemos una clave pública añadido a nuestro anillo de claves GPG con el correo del destinatario, se cifrará con esa clave pública. Pero si queremo elegir otra realizamos lo siguiente:</p>
+<p>En el menú --&gt; Enigmail --&gt; Preferencias --&gt; Editar reglas por-destinatario.</p>
+<p>Añadimos una nueva. Establecemos el correo de destinatario. Seleccionamos la clave a usar para el cifrado.</p>
+<p><img alt="" src="../../img/gpg/captura12.png" /></p>
+<p><img alt="" src="../../img/gpg/captura13.png" /></p>
+<p>Luego para activar el cifrado y la firma del mensaje:</p>
+<p>En el menú --&gt; Enigmail --&gt; Cifrar Mensaje</p>
+<p>En el menú --&gt; Enigmail --&gt; Firmar Mensaje</p>
+<p>Y listo ya podemos proceder a escribir el asunto, el mensaje y enviarlo.</p>
+<p><img alt="" src="../../img/gpg/captura14.png" /></p>
+<div class="admonition note">
+<p>Cuando envíemos el mensaje nos pedirá la frase de paso de nuestra clave privada para la firma.</p>
+</div>
+<hr class="h2">
+
+<h2 id="envio-de-correos-cifrados-y-firmados-en-windows">Envío de correos cifrados y firmados en Windows<a class="headerlink" href="#envio-de-correos-cifrados-y-firmados-en-windows" title="Permanent link">&para;</a></h2>
                 
                   
                 
